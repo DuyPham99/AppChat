@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
-import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
-
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -23,10 +20,10 @@ public class MessageServiceImpl implements MessageService {
     ReactiveMongoOperations mongoOperations;
 
     @Override
-    public Mono<Message> save(Message message, long chatId) {
+    public Mono<Message> save(Message message, String chanelId) {
         Chanel chanel = new Chanel();
-        chanel.setId(chatId);
-//        message.setChanel(chanel);
+        chanel.setId(chanelId);
+        message.setChanel(chanel);
         return messageRespository.save(message);
     }
 

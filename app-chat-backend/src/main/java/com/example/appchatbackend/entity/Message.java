@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -14,12 +16,13 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Document(collection = "messages")
 public class Message {
-//    @Id
-//    private long id;
-//    private String author;
-//    private String content;
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-//    private LocalDateTime published;
-////    private Chanel chanel;
+    @Id
+    private String id;
+    private String author;
+    private String content;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
+    @Indexed(name = "published", direction = IndexDirection.DESCENDING)
+    private LocalDateTime published;
     private long chanelId;
+    private Chanel chanel;
 }

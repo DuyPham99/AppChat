@@ -28,8 +28,8 @@ public class ChatHandler {
         String chanelId = request.pathVariable("chanelId");
         return request
                 .bodyToMono(Message.class)
-                .flatMap(message -> messageService.save(message, Long.parseLong(chanelId)))
-                .flatMap(message -> ServerResponse.ok().body(message.getChanelId(), String.class));
+                .flatMap(message -> messageService.save(message, chanelId))
+                .flatMap(chat -> ServerResponse.created(URI.create("/api/v1/chats/" + chat.getId())).build());
     }
 
     public Mono<ServerResponse> getAllMessage(ServerRequest request) {
