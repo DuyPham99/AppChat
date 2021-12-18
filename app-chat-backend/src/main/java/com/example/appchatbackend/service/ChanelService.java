@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public interface ChanelService {
     Flux<Chanel> findAll();
-    Mono<Chanel> findChanelById(long id);
+    Mono<Chanel> findChanelById(String id);
     Mono<Chanel> save(Chanel chanel);
-    Mono<Void> deleteById(long id);
+    Mono<Void> deleteById(String id);
 }

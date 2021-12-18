@@ -2,7 +2,9 @@ package com.example.appchatbackend.service.impl;
 
 import com.example.appchatbackend.entity.Chanel;
 import com.example.appchatbackend.entity.Message;
+import com.example.appchatbackend.repository.ChanelRepository;
 import com.example.appchatbackend.repository.MessageRespository;
+import com.example.appchatbackend.service.ChanelService;
 import com.example.appchatbackend.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.ReactiveMongoOperations;
@@ -17,23 +19,28 @@ public class MessageServiceImpl implements MessageService {
     private MessageRespository messageRespository;
 
     @Autowired
+    private ChanelRepository chanelRepository;
+
+    @Autowired
     ReactiveMongoOperations mongoOperations;
 
     @Override
     public Mono<Message> save(Message message, String chanelId) {
-        Chanel chanel = new Chanel();
-        chanel.setId(chanelId);
-        message.setChanel(chanel);
-        return messageRespository.save(message);
+        return chanelRepository
+                .findById(chanelId)
+                .flatMap(x -> {
+                    message.setChanel(x);
+                    return messageRespository.save(message);
+                });
     }
 
     @Override
-    public Mono<Void> deleteById(long id) {
+    public Mono<Void> deleteById(String id) {
         return messageRespository.deleteById(id);
     }
 
     @Override
-    public Mono<Message> findById(long id) {
+    public Mono<Message> findById(String id) {
         return messageRespository.findById(id);
     }
 

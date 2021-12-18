@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
 
 @Repository
-public interface MessageRespository extends ReactiveMongoRepository<Message, Long> {
+public interface MessageRespository extends ReactiveMongoRepository<Message, String> {
     @Tailable
-    Flux<Message>  findWithTailableCursorByChanelId(long chatId);
+    Flux<Message>  findByChanel_Id(String chanelId);
 }

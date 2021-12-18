@@ -11,8 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
-import static org.springframework.http.MediaType.TEXT_EVENT_STREAM;
+import static org.springframework.http.MediaType.*;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
 @Component
@@ -42,6 +41,6 @@ public class ChatHandler {
         String chanelId = request.pathVariable("chanelId");
         return ok()
                 .contentType(TEXT_EVENT_STREAM)
-                .body(messageRespository.findWithTailableCursorByChanelId(Long.parseLong(chanelId)), Message.class);
+                .body(messageRespository.findByChanel_Id(chanelId), Message.class);
     }
 }

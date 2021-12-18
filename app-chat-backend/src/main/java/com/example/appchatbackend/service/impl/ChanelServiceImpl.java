@@ -20,7 +20,7 @@ public class ChanelServiceImpl implements ChanelService {
     }
 
     @Override
-    public Mono<Chanel> findChanelById(long id) {
+    public Mono<Chanel> findChanelById(String id) {
         return chanelRepository.findById(id);
     }
 
@@ -30,7 +30,7 @@ public class ChanelServiceImpl implements ChanelService {
     }
 
     @Override
-    public Mono<Void> deleteById(long id) {
+    public Mono<Void> deleteById(String id) {
         return chanelRepository.deleteById(id);
     }
 }

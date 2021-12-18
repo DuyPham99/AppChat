@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ChanelRepository extends ReactiveMongoRepository<Chanel, Long> {
+public interface ChanelRepository extends ReactiveMongoRepository<Chanel, String> {
 }

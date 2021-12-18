@@ -23,6 +23,5 @@ public class Message {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm")
     @Indexed(name = "published", direction = IndexDirection.DESCENDING)
     private LocalDateTime published;
-    private long chanelId;
     private Chanel chanel;
 }

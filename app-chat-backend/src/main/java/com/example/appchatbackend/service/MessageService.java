@@ -6,8 +6,8 @@ import reactor.core.publisher.Mono;
 
 public interface MessageService {
     Mono<Message> save(Message message, String chatId);
-    Mono<Void> deleteById(long id);
-    Mono<Message> findById(long id);
+    Mono<Void> deleteById(String id);
+    Mono<Message> findById(String id);
     Flux<Message> findAll();
     Flux<Message> streamNewMessages();
 }

@@ -15,7 +15,6 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @Configuration
 public class ChatRouter {
-
     @Bean
     public RouterFunction<ServerResponse> routeChats(ChatHandler chatHandler) {
         RouterFunction<ServerResponse> chatRoutes = RouterFunctions
